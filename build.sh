@@ -4,8 +4,8 @@ set -x
 
 export PATH=$HOME/proton-clang/bin:$PATH
 export ARCH=arm64
-export LINUX_COMPILE_BY="Anirudh"
-export LINUX_COMPILE_HOST="vinimec"
+export LINUX_COMPILE_BY="Skyblueborb"
+export LINUX_COMPILE_HOST="paczus"
 
 ccache -M 2G
 export USE_CCACHE=1

@@ -1,4 +1,4 @@
-NAME ?=  laurel
+NAME ?= sky
 
 DATE := $(shell date "+%Y%m%d-%H%M")
 
