@@ -539,7 +539,7 @@ static int goodix_tools_release(struct inode *inode, struct file *filp)
 	return ret;
 }
 
-int goodix_tools_register(void)
+int goodix_tools_register()
 {
 	int ret = 0;
 	ts_info("register tools module");
@@ -552,7 +552,7 @@ int goodix_tools_register(void)
 	return ret;
 }
 
-int goodix_tools_unregister(void)
+int goodix_tools_unregister()
 {
 	int ret = 0;
 	/* when the last close this dev node unregister the module */
