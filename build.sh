@@ -7,9 +7,9 @@ export ARCH=arm64
 export LINUX_COMPILE_BY="Skyblueborb"
 export LINUX_COMPILE_HOST="paczus"
 
-ccache -M 2G
 export USE_CCACHE=1
 export CCACHE_EXEC=$(command -v ccache)
+export CCACHE_DIR=/mnt/TheBig/lineage/ccache
 
 [ -d out ] && rm -rf out
 make vendor/laurel_sprout-perf_defconfig O=out
