@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import print_function
+
 
 """Tool for packing multiple DTB/DTBO files into a single image"""
 
@@ -124,7 +124,7 @@ class DtEntry(object):
                 version: Version of DTBO header, compression is only
                          supported from version 1.
         """
-        if version is 0:
+        if version == 0:
             return CompressionFormat.NO_COMPRESSION
         return self.flags & self._COMPRESSION_FORMAT_MASK
 
@@ -244,7 +244,7 @@ class Dtbo(object):
         Tree table entries and update the DTBO header.
         """
 
-        self.__metadata = array('c', ' ' * self.__metadata_size)
+        self.__metadata = array('b', (' ' * self.__metadata_size).encode())
         metadata_offset = self.header_size
         for dt_entry in self.__dt_entries:
             self._update_dt_entry_header(dt_entry, metadata_offset)
@@ -479,7 +479,7 @@ class Dtbo(object):
                 dt_entry.dt_offset = dt_offset
                 compressed_entry, dt_entry.size = self.compress_dt_entry(dt_entry_compression_info,
                                                                          dt_entry.dt_file)
-                dt_entry_buf += compressed_entry
+                dt_entry_buf = dt_entry_buf.encode('utf-8') + compressed_entry
                 dt_offset += dt_entry.size
                 self.total_size += dt_entry.size
             self.__dt_entries.append(dt_entry)
@@ -612,7 +612,7 @@ def parse_dt_entries(global_args, arg_list):
         raise ValueError('Input DT images must be provided')
 
     total_images = len(img_file_idx)
-    for idx in xrange(total_images):
+    for idx in range(total_images):
         start_idx = img_file_idx[idx]
         if idx == total_images - 1:
             argv = arg_list[start_idx:]
